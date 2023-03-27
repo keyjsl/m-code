@@ -1,6 +1,6 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
-GitUser="Hazzuan1984"
+GitUser="keyjsl"
 source /etc/os-release
 OS=$ID
 ver=$VERSION_ID
