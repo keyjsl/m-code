@@ -1,7 +1,7 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
-GitUser="Hazzuan1984"
-#Open HTTP Puncher By comingsoon
+GitUser="keyjsl"
+#Open HTTP Puncher By key
 #Direct Proxy Squid For OpenVPN TCP
 RED='\e[1;31m'
 GREEN='\e[0;32m'
@@ -29,7 +29,7 @@ chmod +x /usr/local/bin/ohp
 #Buat File OpenVPN TCP OHP
 cat > /etc/openvpn/client-tcp-ohp1194.ovpn <<END
 ############## WELCOME ###############
-########### By comingsoon ############
+########### By key ############
 client
 dev tun
 proto tcp
@@ -68,8 +68,8 @@ cd
 #Buat Service Untuk OHP Ovpn
 cat > /etc/systemd/system/ohp.service <<END
 [Unit]
-Description=Direct Squid Proxy For OpenVPN TCP By Comingsoon
-Documentation=https://t.me/hazzuan1984
+Description=Direct Squid Proxy For OpenVPN TCP By key
+Documentation=https://t.me/jkeychen
 Wants=network.target
 After=network.target
 
@@ -89,4 +89,4 @@ echo ""
 echo -e "${GREEN}Done Installing OHP Server${NC}"
 echo -e "Port OVPN OHP TCP: $ohpp"
 echo -e "Link Download OVPN OHP: http://$MYIP:81/client-tcp-ohp1194.ovpn"
-echo -e "Script By comingsoon"
+echo -e "Script By key"
