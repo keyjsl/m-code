@@ -1,6 +1,6 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
-GitUser="Hazzuan1984"
+GitUser="keyjsl"
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
@@ -30,8 +30,8 @@ if [[ -z $cek ]]; then
 rm -f /etc/systemd/system/ohps.service
 cat > /etc/systemd/system/ohps.service <<END
 [Unit]
-Description=Direct Squid Proxy For open-ssh By Comingsoon
-Documentation=https://t.me/hazzuan1984
+Description=Direct Squid Proxy For open-ssh By key
+Documentation=https://t.me/jkeychen
 Wants=network.target
 After=network.target
 
@@ -63,8 +63,8 @@ if [[ -z $cek ]]; then
 rm -f /etc/systemd/system/ohpd.service
 cat > /etc/systemd/system/ohpd.service <<END
 [Unit]
-Description=Direct Squid Proxy For Dropbear By Comingsoon
-Documentation=https://t.me/hazzuan1984
+Description=Direct Squid Proxy For Dropbear By key
+Documentation=https://t.me/jkeychen
 Wants=network.target
 After=network.target
 
