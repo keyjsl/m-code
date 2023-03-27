@@ -477,7 +477,7 @@ cat> /usr/local/etc/xray/xtls.json << END
                         "id": "${uuid}",
                         "flow": "xtls-rprx-vision",
                         "level": 0,
-                        "email": "admin@comingsoon.xyz"
+                        "email": "admin@jslcloud.xyz"
 #xtls
                     }
                 ],
@@ -489,22 +489,22 @@ cat> /usr/local/etc/xray/xtls.json << END
                     },
                     {
                         "path": "/vmess",
-                        "dest": 8001
+                        "dest": 8002
                         "xver": 1
                     },
                     {
                         "path": "/vless",
-                        "dest": 8001
+                        "dest": 8003
                         "xver": 1
                     },
                     {
                         "path": "/trojan",
-                        "dest": 8001
+                        "dest": 8004
                         "xver": 1
                     },
 		    {
                         "alpn": "h2",
-                        "dest": "8002",
+                        "dest": "8005",
                         "xver": 1
                     }
                 ]
