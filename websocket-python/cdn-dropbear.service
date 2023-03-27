@@ -1,7 +1,7 @@
 # /usr/local/bin/cdn-dropbear
 [Unit]
 Description=Python WS-Dropbear By key
-Documentation=https://key.xyz
+Documentation=https://jslcloud.xyz
 After=network.target nss-lookup.target
 
 [Service]
