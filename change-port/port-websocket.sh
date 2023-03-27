@@ -1,6 +1,6 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
-GitUser="Hazzuan1984"
+GitUser="keyjsl"
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
@@ -33,7 +33,7 @@ if [[ -z $cek ]]; then
 rm -f /etc/systemd/system/cdn-dropbear.service
 cat > /etc/systemd/system/cdn-dropbear.service <<END
 [Unit]
-Description=Python WS-Dropbear By comingsoon
+Description=Python WS-Dropbear By key
 Documentation=https://virtual.xyz
 After=network.target nss-lookup.target
 
