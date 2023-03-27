@@ -1,7 +1,7 @@
 #!/bin/bash
 #wget https://github.com/${GitUser}/
-GitUser="Hazzuan1984"
-#Open HTTP Puncher By comingsoon
+GitUser="keyjsl"
+#Open HTTP Puncher By key
 #Direct Proxy Squid For OpenVPN TCP
 RED='\e[1;31m'
 GREEN='\e[0;32m'
@@ -29,8 +29,8 @@ chmod +x /usr/local/bin/ohpd
 #Buat Service Untuk OHP Dropbear
 cat > /etc/systemd/system/ohpd.service <<END
 [Unit]
-Description=Direct Squid Proxy For ssh-dropbear By comingsoon
-Documentation=https://t.me/hazzuan1984
+Description=Direct Squid Proxy For ssh-dropbear By key
+Documentation=https://t.me/jkeychen
 Wants=network.target
 After=network.target
 
