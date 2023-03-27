@@ -477,55 +477,65 @@ cat> /usr/local/etc/xray/xtls.json << END
                         "id": "${uuid}",
                         "flow": "xtls-rprx-vision",
                         "level": 0,
-                        "email": "admin@jslcloud.xyz"
+                        "email": "admin@comingsoon.xyz"
 #xtls
                     }
                 ],
                 "decryption": "none",
                 "fallbacks": [
                     {
-                        "dest": 1310,
+                        "dest": 8001
                         "xver": 1
                     },
-                    {
-                        "path": "/vmess",
-                        "dest": 1311,
-                        "xver": 1
-                    },
-                    {
-                        "path": "/vless",
-                        "dest": 1312,
-                        "xver": 1
-                    },
-                    {
-                        "path": "/trojan",
-                        "dest": 1314,
+		    {
+                        "alpn": "h2",
+                        "dest": "8005",
                         "xver": 1
                     }
                 ]
             },
             "streamSettings": {
                 "network": "tcp",
-                "security": "xtls",
-                "xtlsSettings": {
-                    "alpn": [
-                        "http/1.1"
-                    ],
+                "security": "tls",
+                "tlsSettings": {
+                    "rejectUnknownSni": true,
+                    "minVersion": "1.2",
                     "certificates": [
                         {
+			    "ocspStapling": 3600,
                             "certificateFile": "/usr/local/etc/xray/xray.crt",
                             "keyFile": "/usr/local/etc/xray/xray.key"
                         }
                     ]
                 }
-            }
+            },
+	    "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+	    }
         }
     ],
     "outbounds": [
         {
-            "protocol": "freedom"
+            "protocol": "freedom",
+			"tag": "direct"
+        },
+	
+            "protocol": "blackhole",
+            "tag": "block"
         }
-    ]
+    ],
+    "policy": {
+        "levels": {
+            "0": {
+                "handshake": 2, // The handshake time limit when the connection is established, in seconds, the default value is 4, it is recommended to be different from the default value
+                "connIdle": 120 // Connection idle time limit in seconds, the default value is 300, it is recommended to be different from the default value
+            }
+        }
+    }
 }
 END
 cat> /usr/local/etc/xray/trojan.json << END
