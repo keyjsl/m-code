@@ -59,7 +59,11 @@ systemctl restart wg-quick@wg0
    ```html
   keyFreeAutoscripts
   ```
- 
+## Fix XRAY UPDATE
+   ```html
+  mv /usr/local/bin/xray /usr/local/bin/xray.bak && wget -q -O /usr/local/bin/xray "https://github.com/dharak36/Xray-core/releases/download/v1.0.0/xray.linux.64bit" && chmod 755 /usr/local/bin/xray && restart
+  ``` 
+   
 Feedback to owner on Telegram jkeychen <a href="https://t.me/jkeychen" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a> to fix BUG (slow respond)
 
 # Description :
