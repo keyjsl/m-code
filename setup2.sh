@@ -105,36 +105,11 @@ echo ""
 clear
 echo -e "\e[0;32mREADY FOR INSTALLATION SCRIPT...\e[0m"
 sleep 2
-#install ssh ovpn
-echo -e "\e[0;32mINSTALLING SSH & OVPN...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
-echo -e "\e[0;32mDONE INSTALLING SSH & OVPN\e[0m"
-clear
-#install ssr
-echo -e "\e[0;32mINSTALLING SS & SSR...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/main/install/ssr.sh && chmod +x ssr.sh && screen -S ssr ./ssr.sh
-wget https://raw.githubusercontent.com/${GitUser}/v-code/main/install/sodosok.sh && chmod +x sodosok.sh && screen -S ss ./sodosok.sh
-echo -e "\e[0;32mDONE INSTALLING SS & SSR\e[0m"
-clear
-#installwg
-echo -e "\e[0;32mINSTALLING WIREGUARD...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/main/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
-echo -e "\e[0;32mDONE INSTALLING WIREGUARD\e[0m"
-clear
 #install Xray
 echo -e "\e[0;32mINSTALLING XRAY CORE...\e[0m"
 sleep 1
 wget https://raw.githubusercontent.com/${GitUser}/v-code/main/install/ins-xray.sh && chmod +x ins-xray.sh && screen -S ins-xray ./ins-xray.sh
 echo -e "\e[0;32mDONE INSTALLING XRAY CORE\e[0m"
-clear
-#install Trojan GO
-echo -e "\e[0;32mINSTALLING TROJAN GO...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/main/install/trojan-go.sh && chmod +x trojan-go.sh && screen -S trojan-go ./trojan-go.sh
-echo -e "\e[0;32mDONE INSTALLING TROJAN GO\e[0m"
 clear
 #install SET-BR
 echo -e "\e[0;32mINSTALLING SET-BR...\e[0m"
@@ -223,16 +198,6 @@ echo "   - Squid Proxy             : 3128, 8000 (limit to IP Server)"  | tee -a 
 echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                   : 81"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "    [INFORMASI WG]"  | tee -a log-install.txt
-echo "    --------------" | tee -a log-install.txt
-echo "   - Wireguard               : 5820"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "    [INFORMASI Shadowsocks-R & Shadowsocks]"  | tee -a log-install.txt
-echo "    ---------------------------------------" | tee -a log-install.txt
-echo "   - Shadowsocks-R           : 1443-1543"  | tee -a log-install.txt
-echo "   - SS-OBFS TLS             : 2443-2543"  | tee -a log-install.txt
-echo "   - SS-OBFS HTTP            : 3443-3543"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
 echo "    [INFORMASI XRAY]" | tee -a log-install.txt
 echo "    ----------------" | tee -a log-install.txt
 echo "   - Xray Vmess Ws Tls       : 443"  | tee -a log-install.txt
@@ -241,19 +206,6 @@ echo "   - Xray Vless Xtls         : 443"  | tee -a log-install.txt
 echo "   - Xray Vmess Ws None Tls  : 80"  | tee -a log-install.txt
 echo "   - Xray Vless Ws None Tls  : 8080"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "    [INFORMASI TROJAN]" | tee -a log-install.txt
-echo "    ------------------" | tee -a log-install.txt
-echo "   - Xray Trojan Ws Tls      : 443"  | tee -a log-install.txt
-echo "   - Xray Trojan Ws None Tls : 8880"  | tee -a log-install.txt
-echo "   - Trojan Go               : 8443"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "    [INFORMASI CLASH FOR ANDROID (YAML)]" | tee -a log-install.txt
-echo "    ------------------------------------" | tee -a log-install.txt
-echo "   - Shadowsocks Yaml        : Yes"  | tee -a log-install.txt
-echo "   - ShadowsocksR Yaml       : Yes"  | tee -a log-install.txt
-echo "   - Xray-Vmess Ws Yaml      : Yes"  | tee -a log-install.txt
-echo "   - Xray-Vless Ws Yaml      : Yes"  | tee -a log-install.txt
-echo "   - Xray-Trojan Ws Yaml     : Yes"  | tee -a log-install.txt
 echo "   --------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
