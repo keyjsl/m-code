@@ -482,10 +482,10 @@ fi
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 harini=`date -d "0 days" +"%Y-%m-%d"`
 sed -i '/#xtls$/a\### '"$user $exp $harini $uuid"'\
-},{"id": "'""$uuid""'","flow": "'""xtls-rprx-vision""'","level": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/xtls.json
-vlesslink1="vless://${uuid}@${sts}${domain}:$xtls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=$sni#XTLS-VISION-${user}"
-#vlesslink2="vless://${uuid}@${sts}${domain}:$xtls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=$sni#XTLS-SPLICE-${user}"#
-vlesslink3="vless://${uuid}@${MYIP}:$xtls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=pay-dcb.u.com.my#XTLS-OREN-${user}"
+},{"id": "'""$uuid""'","flow": "'""xtls-rprx-direct""'","level": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/xtls.json
+vlesslink1="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=$sni#XTLS-DIRECT-${user}"
+vlesslink2="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=$sni#XTLS-SPLICE-${user}"
+vlesslink3="vless://${uuid}@${MYIP}:$xtls?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=pay-dcb.u.com.my#XTLS-OREN-${user}"
 systemctl restart xray@xtls
 clear
 echo -e ""
@@ -500,7 +500,9 @@ echo -e "Network        : TCP"
 echo -e "Flow           : Vision"
 echo -e "AllowInsecure  : True"
 echo -e "\e[$line═════════════════════════════════\e[m"
-echo -e "Link Xtls Vision  : ${vlesslink1}"
+echo -e "Link Xtls DIRECT  : ${vlesslink1}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link Xtls OREN  : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls OREN  : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
@@ -1208,8 +1210,8 @@ user=$(grep -E "^### " "/usr/local/etc/xray/xtls.json" | cut -d ' ' -f 2 | sed -
 harini=$(grep -E "^### " "/usr/local/etc/xray/xtls.json" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
 exp=$(grep -E "^### " "/usr/local/etc/xray/xtls.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
 uuid=$(grep -E "^### " "/usr/local/etc/xray/xtls.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
-vlesslink1="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=$sni#XTLS-VISION-${user}"
-#vlesslink2="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=$sni#XTLS-SPLICE-${user}"#
+vlesslink1="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=$sni#XTLS-DIRECT-${user}"
+vlesslink2="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=$sni#XTLS-SPLICE-${user}"
 vlesslink3="vless://${uuid}@${MYIP}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=pay-dcb.u.com.my#XTLS-OREN-${user}"
 clear
 echo -e ""
@@ -1221,10 +1223,12 @@ echo -e "Port Xtls        : $xtls"
 echo -e "User ID          : ${uuid}"
 echo -e "Encryption       : None"
 echo -e "Network          : TCP"
-echo -e "Flow             : vision"
+echo -e "Flow             : direct"
 echo -e "AllowInsecure    : True"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls Direct : ${vlesslink1}"
+echo -e "\e[$line═════════════════════════════════\e[m"
+echo -e "Link Xtls OREN  : ${vlesslink2}"
 echo -e "\e[$line═════════════════════════════════\e[m"
 echo -e "Link Xtls OREN  : ${vlesslink3}"
 echo -e "\e[$line═════════════════════════════════\e[m"
