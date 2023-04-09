@@ -514,8 +514,8 @@ cat> /usr/local/etc/xray/xtls.json << END
                     "certificates": [
                         {
                             "ocspStapling": 3600,
-                            "certificateFile": "/root/cert/key.jslcloud.xyz.cer", // 证书文件，建议用fullchain（全SSL证书链），若只有网站证书，会出现v2rayN能使用，v2rayNG不能使用的情况，通常不区分扩展名
-                            "keyFile": "/root/cert/key.jslcloud.xyz.key" // 私钥文件
+                            "certificateFile": "/root/cert/fullchain.cer", // 证书文件，建议用fullchain（全SSL证书链），若只有网站证书，会出现v2rayN能使用，v2rayNG不能使用的情况，通常不区分扩展名
+                            "keyFile": "/root/cert/private.key" // 私钥文件
                         }
                     ]
                 }
