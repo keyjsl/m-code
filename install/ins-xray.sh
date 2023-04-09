@@ -465,8 +465,22 @@ cat> /usr/local/etc/xray/xtls.json << END
   "log": {
     "access": "/var/log/xray/access3.log",
     "error": "/var/log/xray/error.log",
-    "loglevel": "info"
-       },
+    {
+    "log": {
+        "loglevel": "warning"
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
     "inbounds": [
         {
             "port": 443,
@@ -475,148 +489,64 @@ cat> /usr/local/etc/xray/xtls.json << END
                 "clients": [
                     {
                         "id": "${uuid}",
-                        "flow": "xtls-rprx-vision",
-                        "level": 0,
-                        "email": "admin@comingsoon.xyz"
-#xtls
+                        "flow": "xtls-rprx-vision"
                     }
                 ],
                 "decryption": "none",
                 "fallbacks": [
-                    // H2
-          {
-            // if the SNI was `trh2o.EXAMPLE.COM` and `alpn=h2`, pass it to trojan-h2 listener
-            "name": "trh2o.example.com",
-            "alpn": "h2",
-            "dest": "@trojan-h2"
-          },
-          {
-            // if the SNI was `vlh2o.EXAMPLE.COM` and `alpn=h2`, pass it to vless-h2 listener
-            "name": "vlh2o.example.com",
-            "alpn": "h2",
-            "dest": "@vless-h2"
-          },
-          {
-            // if the SNI was `vmh2o.EXAMPLE.COM` and `alpn=h2`, pass it to vmess-h2 listener
-            "name": "vmh2o.example.com",
-            "alpn": "h2",
-            "dest": "@vmess-h2"
-          },
-          {
-            // if the SNI was `ssh2o.EXAMPLE.COM` and `alpn=h2`, pass it to shadowsocks-h2 listener
-            "name": "ssh2o.example.com",
-            "alpn": "h2",
-            "dest": 4003
-          },
-          // Websocket
-          {
-            // if the path was `/vless`, pass it to vless-ws listener
-            "path": "/vless",
-            "dest": "@vless-ws",
-            "xver": 2 //Enable the sending of the PROXY protocol, and send the real source IP and port to the following vmess+ws application. 1 or 2 indicates the PROXY protocol version. Consistent with the following, it is recommended to configure 2.
-          },
-          {
-            // if the path was `/vmess`, pass it to vmess-ws listener
-            "path": "/vmess",
-            "dest": "@vmess-ws",
-            "xver": 2
-          },
-          {
-            // if the path was `/trojan`, pass it to trojan-ws listener
-            "path": "/trojan",
-            "dest": "@trojan-ws",
-            "xver": 2
-          },
-		    {
-            // if the request's ALPN was HTTP2, pass it to trojan-tcp. (Also from trojan-tcp fallback to Nginx HTTP2)
-            "alpn": "h2",
-            "dest": "@trojan-tcp",
-            "xver": 2
-          },
+                    {
+                        "dest": "8001",
+                        "xver": 1
+                    },
+                    {
+                        "alpn": "h2",
+                        "dest": "8002",
+                        "xver": 1
+                    }
                 ]
             },
             "streamSettings": {
                 "network": "tcp",
                 "security": "tls",
                 "tlsSettings": {
+                    "rejectUnknownSni": true,
+                    "minVersion": "1.2",
                     "certificates": [
                         {
-			    "ocspStapling": 3600,
-                            "certificateFile": "/usr/local/etc/xray/xray.crt",
-                            "keyFile": "/usr/local/etc/xray/xray.key"
+                            "ocspStapling": 3600,
+                            "certificateFile": "/root/cert/key.jslcloud.xyz.cer", // 证书文件，建议用fullchain（全SSL证书链），若只有网站证书，会出现v2rayN能使用，v2rayNG不能使用的情况，通常不区分扩展名
+                            "keyFile": "/root/cert/key.jslcloud.xyz.key" // 私钥文件
                         }
                     ]
                 }
             },
-			 "minVersion": "1.2", //Xray version is not less than v1.1.4 to support configuring the minimum TLS version. Currently V2Ray does not support it. If you use V2Ray as the server, you must delete this configuration.
-          "cipherSuites": "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256", //Xray版本不小于v1.1.4才支持配置密码套件（若无RSA证书，可删除所有RSA算法的密码套件；无ECC证书, to remove cipher suites for all ECDSA algorithms.). Currently V2Ray does not support it. If you use V2Ray as the server, you must delete this configuration.
-          "alpn": [
-            "h2", //Enabling h2 connection needs to configure h2 fallback, otherwise inconsistency (streaking) is easily detected by the wall and blocked.
-            "http/1.1" //Enabling http/1.1 connection needs to configure http/1.1 fallback, otherwise inconsistency (streaking) is easily detected by the wall and blocked.
-          ]
-        }
-      },
-	    "sniffing": {
+            "sniffing": {
                 "enabled": true,
                 "destOverride": [
                     "http",
                     "tls"
                 ]
-	    }
+            }
         }
     ],
-     "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {}
-    },
-    {
-      "protocol": "blackhole",
-      "tag": "blocked"
-    },
-    {
-      // A DNS Cache can be setup and added here to imporve performance (the corresponding rule should be uncommented)
-      "tag": "DNS-Internal",
-      "protocol": "dns",
-      "settings": {
-        "address": "127.0.0.53",
-        "port": 53
-      }
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ],
+    "policy": {
+        "levels": {
+            "0": {
+                "handshake": 2,
+                "connIdle": 120
+            }
+        }
     }
-  ],
-  "routing": {
-    "domainStrategy": "AsIs",
-    "rules": [
-      {
-        "inboundTag": [
-          "api"
-        ],
-        "outboundTag": "api",
-        "type": "field"
-      },
-      // {
-      //   // DNS Cache rule
-      //   "type": "field",
-      //   "port": 53,
-      //   "network": "tcp,udp",
-      //   "outboundTag": "DNS-Internal"
-      // },
-      {
-        "type": "field",
-        "outboundTag": "blocked",
-        "ip": [
-          "geoip:private"
-        ]
-      },
-      {
-        "type": "field", // Block BitTorrent protocol
-        "outboundTag": "blocked",
-        "protocol": [
-          "bittorrent"
-        ]
-      }
-    ]
-  }
 }
 END
 cat> /usr/local/etc/xray/trojan.json << END
