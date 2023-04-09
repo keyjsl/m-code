@@ -475,57 +475,68 @@ cat> /usr/local/etc/xray/xtls.json << END
                 "clients": [
                     {
                         "id": "${uuid}",
-                        "flow": "xtls-rprx-direct",
+                        "flow": "xtls-rprx-vision",
                         "level": 0,
-                        "email": "admin@comingsoon.xyz"
+                        "email": "admin@jslcloud.xyz"
 #xtls
                     }
                 ],
                 "decryption": "none",
                 "fallbacks": [
                     {
-                        "dest": 1310,
+                        "dest": "8001",
                         "xver": 1
                     },
                     {
-                        "path": "/vmess",
-                        "dest": 1311,
-                        "xver": 1
-                    },
-                    {
-                        "path": "/vless",
-                        "dest": 1312,
-                        "xver": 1
-                    },
-                    {
-                        "path": "/trojan",
-                        "dest": 1314,
+                        "alpn": "h2",
+                        "dest": "8002",
                         "xver": 1
                     }
                 ]
             },
             "streamSettings": {
                 "network": "tcp",
-                "security": "xtls",
-                "xtlsSettings": {
-                    "alpn": [
-                        "http/1.1"
-                    ],
+                "security": "tls",
+                "tlsSettings": {
+					      "alpn": "h2,http/1.1",
+                    "allowInsecure": true,
+                    "fingerprint": "chrome", // Used to configure the fingerprint of the specified TLS Client Hello, Xray will simulate the TLS fingerprint through the uTLS library, or generate it randomly
                     "certificates": [
                         {
+                            "ocspStapling": 3600,
                             "certificateFile": "/usr/local/etc/xray/xray.crt",
                             "keyFile": "/usr/local/etc/xray/xray.key"
                         }
                     ]
                 }
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
             }
         }
     ],
     "outbounds": [
         {
-            "protocol": "freedom"
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
         }
-    ]
+    ],
+    "policy": {
+        "levels": {
+            "0": {
+                "handshake": 2, // The handshake time limit when the connection is established, in seconds, the default value is 4, it is recommended to be different from the default value
+                "connIdle": 120 // Connection idle time limit in seconds, the default value is 300, it is recommended to be different from the default value
+            }
+        }
+    }
 }
 END
 cat> /usr/local/etc/xray/trojan.json << END
