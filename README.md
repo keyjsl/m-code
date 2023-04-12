@@ -1,8 +1,7 @@
 # BEFORE ANY INSTALLATION OR USAGE, PLEASE READ
-- this script is free to use
-- not required any donation
+- this script is free to use (strictly no reselling)
 - please don't bother me with domain/subdomain setup and error (do the homework by googling it)
-- tested on vps digital ocean / linode / shinjiru / myklnet / ovh without any problem
+- tested on digital ocean / linode / shinjiru / myklnet / ovh without any problem
 - enjoy
 
 # FIX SCRIPT
@@ -119,7 +118,7 @@ Feedback to owner on Telegram jkeychen <a href="https://t.me/jkeychen" target=�
 *   Vinstechmy
 *   V-code
 *   ꜱᴀᴍꜱꜰx
-*	jkeychen
+*	  jkeychen
 
 
 <p align="center">
