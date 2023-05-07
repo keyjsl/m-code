@@ -21,7 +21,7 @@ commonname="key"
 email="admin@key.xyz"
 
 # simple password minimal
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/v-code/vision/password"
+wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/password"
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -88,24 +88,12 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vision/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/nginx.conf"
 mkdir -p /home/vps/public_html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vision/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/vps.conf"
 /etc/init.d/nginx restart
 
 apt-get -y update
-# setting port ssh
-cd
-sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g'
-# /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 500' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 51443' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 58080' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
-sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
-/etc/init.d/ssh restart
-
 # setting vnstat
 apt -y install vnstat
 /etc/init.d/vnstat restart
@@ -126,7 +114,7 @@ rm -rf /root/vnstat-2.6
 END
 
 # install lolcat
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/lolcat.sh &&  chmod +x lolcat.sh && ./lolcat.sh
 
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
@@ -156,15 +144,15 @@ echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # banner /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/${GitUser}/v-code/vision/banner/bannerssh.conf"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/banner/bannerssh.conf"
 echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 #Bannerku menu
-wget -O /usr/bin/bannerku https://raw.githubusercontent.com/${GitUser}/v-code/vision/banner/bannerku && chmod +x /usr/bin/bannerku
+wget -O /usr/bin/bannerku https://raw.githubusercontent.com/${GitUser}/v-code/vswss/banner/bannerku && chmod +x /usr/bin/bannerku
 
 #install bbr
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -185,54 +173,36 @@ netfilter-persistent reload
 
 # download script
 cd /usr/bin
-wget -O add-host "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/add-host.sh"
-wget -O about "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/about.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu.sh"
-#wget -O add-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vision/add-user/add-ssh.sh"
-#wget -O trial "https://raw.githubusercontent.com/${GitUser}/v-code/vision/add-user/trial.sh"
-wget -O del-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vision/delete-user/del-ssh.sh"
-wget -O member "https://raw.githubusercontent.com/${GitUser}/v-code/vision/member.sh"
-wget -O delete "https://raw.githubusercontent.com/${GitUser}/v-code/vision/delete-user/delete.sh"
-#wget -O cek-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cek-user/cek-ssh.sh"
-wget -O restart "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/info.sh"
-wget -O ram "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/ram.sh"
-#wget -O renew-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vision/renew-user/renew-ssh.sh"
-#wget -O autokill "https://raw.githubusercontent.com/${GitUser}/v-code/vision/autokill.sh"
-#wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cek-user/ceklim.sh"
-#wget -O tendang "https://raw.githubusercontent.com/${GitUser}/v-code/vision/tendang.sh"
-wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/v-code/vision/clear-log.sh"
-wget -O change-port "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change.sh"
-#wget -O port-ovpn "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-ovpn.sh"
-#wget -O port-ssl "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-ssl.sh"
-#wget -O port-wg "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-wg.sh"
-#wget -O port-squid "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-squid.sh"
-#wget -O port-websocket "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-websocket.sh"
-wget -O wbmn "https://raw.githubusercontent.com/${GitUser}/v-code/vision/webmin.sh"
-wget -O update "https://raw.githubusercontent.com/${GitUser}/v-code/vision/update/update.sh"
-wget -O run-update "https://raw.githubusercontent.com/${GitUser}/v-code/vision/update/run-update.sh"
-wget -O message-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vision/update/message-ssh.sh"
-wget -O xp "https://raw.githubusercontent.com/${GitUser}/v-code/vision/xp.sh"
-wget -O kernel-updt "https://raw.githubusercontent.com/${GitUser}/v-code/vision/kernel.sh"
-#wget -O user-list "https://raw.githubusercontent.com/${GitUser}/v-code/vision/more-option/user-list.sh"
-#wget -O user-lock "https://raw.githubusercontent.com/${GitUser}/v-code/vision/more-option/user-lock.sh"
-#wget -O user-unlock "https://raw.githubusercontent.com/${GitUser}/v-code/vision/more-option/user-unlock.sh"
-#wget -O user-password "https://raw.githubusercontent.com/${GitUser}/v-code/vision/more-option/user-password.sh"
-wget -O antitorrent "https://raw.githubusercontent.com/${GitUser}/v-code/vision/more-option/antitorrent.sh"
-wget -O cfa "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cloud/cfa.sh"
-wget -O cfd "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cloud/cfd.sh"
-wget -O cfp "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cloud/cfp.sh"
-wget -O swap "https://raw.githubusercontent.com/${GitUser}/v-code/vision/swapkvm.sh"
-wget -O check-sc "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/running.sh"
-#wget -O ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/ssh.sh"
-wget -O autoreboot "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/autoreboot.sh"
-wget -O bbr "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/bbr.sh"
-#wget -O port-ohp "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-ohp.sh"
-wget -O port-xray "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-xray.sh"
-wget -O panel-domain "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/panel-domain.sh"
-wget -O system "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/system.sh"
-wget -O themes "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/themes.sh"
+wget -O add-host "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/add-host.sh"
+wget -O about "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/about.sh"
+wget -O menu "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu.sh"
+wget -O del-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/delete-user/del-ssh.sh"
+wget -O member "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/member.sh"
+wget -O delete "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/delete-user/delete.sh"
+wget -O restart "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/info.sh"
+wget -O ram "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/ram.sh"
+wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/clear-log.sh"
+wget -O change-port "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change.sh"
+wget -O wbmn "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/webmin.sh"
+wget -O update "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/update.sh"
+wget -O run-update "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/run-update.sh"
+wget -O message-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/message-ssh.sh"
+wget -O xp "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/xp.sh"
+wget -O kernel-updt "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/kernel.sh"
+wget -O antitorrent "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/more-option/antitorrent.sh"
+wget -O cfa "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cloud/cfa.sh"
+wget -O cfd "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cloud/cfd.sh"
+wget -O cfp "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cloud/cfp.sh"
+wget -O swap "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/swapkvm.sh"
+wget -O check-sc "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/running.sh"
+wget -O autoreboot "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/autoreboot.sh"
+wget -O bbr "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/bbr.sh"
+wget -O port-xray "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-xray.sh"
+wget -O panel-domain "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/panel-domain.sh"
+wget -O system "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/system.sh"
+wget -O themes "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/themes.sh"
 chmod +x add-host
 chmod +x menu
 chmod +x del-ssh
