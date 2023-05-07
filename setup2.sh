@@ -92,12 +92,12 @@ echo $host1 > /root/domain
 echo ""
 elif [[ $host == "2" ]]; then
 #install cf
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/cf.sh && chmod +x cf.sh && ./cf.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 else
 echo -e "Random Subdomain/Domain is used"
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/cf.sh && chmod +x cf.sh && ./cf.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 fi
@@ -105,55 +105,30 @@ echo ""
 clear
 echo -e "\e[0;32mREADY FOR INSTALLATION SCRIPT...\e[0m"
 sleep 2
-#install ssh ovpn
-echo -e "\e[0;32mINSTALLING SSH & OVPN...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
-echo -e "\e[0;32mDONE INSTALLING SSH & OVPN\e[0m"
-clear
 #install ssr
 echo -e "\e[0;32mINSTALLING SS & SSR...\e[0m"
 sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/ssr.sh && chmod +x ssr.sh && screen -S ssr ./ssr.sh
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/sodosok.sh && chmod +x sodosok.sh && screen -S ss ./sodosok.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/ssr.sh && chmod +x ssr.sh && screen -S ssr ./ssr.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/sodosok.sh && chmod +x sodosok.sh && screen -S ss ./sodosok.sh
 echo -e "\e[0;32mDONE INSTALLING SS & SSR\e[0m"
-clear
-#installwg
-echo -e "\e[0;32mINSTALLING WIREGUARD...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
-echo -e "\e[0;32mDONE INSTALLING WIREGUARD\e[0m"
 clear
 #install Xray
 echo -e "\e[0;32mINSTALLING XRAY CORE...\e[0m"
 sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/ins-xray.sh && chmod +x ins-xray.sh && screen -S ins-xray ./ins-xray.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/ins-xray.sh && chmod +x ins-xray.sh && screen -S ins-xray ./ins-xray.sh
 echo -e "\e[0;32mDONE INSTALLING XRAY CORE\e[0m"
 clear
 #install Trojan GO
 echo -e "\e[0;32mINSTALLING TROJAN GO...\e[0m"
 sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/trojan-go.sh && chmod +x trojan-go.sh && screen -S trojan-go ./trojan-go.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/trojan-go.sh && chmod +x trojan-go.sh && screen -S trojan-go ./trojan-go.sh
 echo -e "\e[0;32mDONE INSTALLING TROJAN GO\e[0m"
 clear
 #install SET-BR
 echo -e "\e[0;32mINSTALLING SET-BR...\e[0m"
 sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget https://raw.githubusercontent.com/${GitUser}/v-code/vswss/install/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 echo -e "\e[0;32mDONE INSTALLING SET-BR...\e[0m"
-clear
-#install ohp-server
-echo -e "\e[0;32mINSTALLING OHP PORT...\e[0m"
-sleep 1
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/ohp.sh && chmod +x ohp.sh && ./ohp.sh
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/ohp-dropbear.sh && chmod +x ohp-dropbear.sh && ./ohp-dropbear.sh
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/install/ohp-ssh.sh && chmod +x ohp-ssh.sh && ./ohp-ssh.sh
-echo -e "\e[0;32mDONE INSTALLING OHP PORT\e[0m"
-clear
-#install websocket
-echo -e "\e[0;32mINSTALLING WEBSOCKET PORT...\e[0m"
-wget https://raw.githubusercontent.com/${GitUser}/v-code/vision/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket.sh ./websocket.sh
-echo -e "\e[0;32mDONE INSTALLING WEBSOCKET PORT\e[0m"
 clear
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
@@ -164,22 +139,16 @@ apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vision/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/nginx.conf"
 mkdir -p /home/vps/public_html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vision/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/vps.conf"
 /etc/init.d/nginx restart
 #finish
-rm -f /root/ssh-vpn.sh
-rm -f /root/wg.sh
 rm -f /root/ss.sh
 rm -f /root/ssr.sh
 rm -f /root/ins-xray.sh
 rm -f /root/trojan-go.sh
 rm -f /root/set-br.sh
-rm -f /root/ohp.sh
-rm -f /root/ohp-dropbear.sh
-rm -f /root/ohp-ssh.sh
-rm -f /root/websocket.sh
 # Colour Default
 echo "1;36m" > /etc/banner
 echo "30m" > /etc/box
@@ -190,42 +159,22 @@ echo "47m" > /etc/back
 echo "1;35m" > /etc/number
 echo 3d > /usr/bin/test
 # Version
-ver=$( curl https://raw.githubusercontent.com/${GitUser}/version-t/main/version.conf )
+ver=$( curl https://raw.githubusercontent.com/${GitUser}/v-code/vswss/version.conf )
 history -c
 echo "$ver" > /home/ver
 clear
 echo " "
 echo "Installation has been completed!!"
 echo " "
-echo "=========================[SCRIPT PREMIUM]========================" | tee -a log-install.txt
+echo "=========================[SCRIPT WSS]========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "-----------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "    [INFORMASI SSH & OpenVPN]" | tee -a log-install.txt
-echo "    -------------------------" | tee -a log-install.txt
-echo "   - OpenSSH                 : 22"  | tee -a log-install.txt
-echo "   - OpenVPN                 : TCP 1194, UDP 2200"  | tee -a log-install.txt
-echo "   - OpenVPN SSL             : 110"  | tee -a log-install.txt
-echo "   - Stunnel4                : 222, 777"  | tee -a log-install.txt
-echo "   - Dropbear                : 442, 109"  | tee -a log-install.txt
-echo "   - OHP Dropbear            : 8585"  | tee -a log-install.txt
-echo "   - OHP SSH                 : 8686"  | tee -a log-install.txt
-echo "   - OHP OpenVPN             : 8787"  | tee -a log-install.txt
-echo "   - Websocket SSH(HTTP)     : 2081"  | tee -a log-install.txt
-echo "   - Websocket SSL(HTTPS)    : 222"  | tee -a log-install.txt
-echo "   - Websocket OpenVPN       : 2084"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "    [INFORMASI Sqd, Bdvp, Ngnx]" | tee -a log-install.txt
+echo "    [INFORMASI Ngnx]" | tee -a log-install.txt
 echo "    ---------------------------" | tee -a log-install.txt
-echo "   - Squid Proxy             : 3128, 8000 (limit to IP Server)"  | tee -a log-install.txt
-echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                   : 81"  | tee -a log-install.txt
-echo ""  | tee -a log-install.txt
-echo "    [INFORMASI WG]"  | tee -a log-install.txt
-echo "    --------------" | tee -a log-install.txt
-echo "   - Wireguard               : 5820"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "    [INFORMASI Shadowsocks-R & Shadowsocks]"  | tee -a log-install.txt
 echo "    ---------------------------------------" | tee -a log-install.txt
@@ -258,7 +207,6 @@ echo "   --------------------------------------------------------------" | tee -
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
 echo "   - Timezone                : Asia/Kuala_Lumpur (GMT +8)"  | tee -a log-install.txt
-echo "   - Fail2Ban                : [ON]"  | tee -a log-install.txt
 echo "   - Dflate                  : [ON]"  | tee -a log-install.txt
 echo "   - IPtables                : [ON]"  | tee -a log-install.txt
 echo "   - Auto-Reboot             : [ON]"  | tee -a log-install.txt
