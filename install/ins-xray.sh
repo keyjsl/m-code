@@ -888,12 +888,12 @@ systemctl restart xray@trojan
 
 # download script
 cd /usr/bin
-wget -O port-xray "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-xray.sh"
-wget -O port-trojan "https://raw.githubusercontent.com/${GitUser}/v-code/vision/change-port/port-trojan.sh"
-wget -O certv2ray "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cert.sh"
-wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/trojaan.sh"
-wget -O xraay "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/xraay.sh"
-wget -O trafficxray "https://raw.githubusercontent.com/${GitUser}/v-code/vision/trafficxray.sh"
+wget -O port-xray "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-xray.sh"
+wget -O port-trojan "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-trojan.sh"
+wget -O certv2ray "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cert.sh"
+wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/trojaan.sh"
+wget -O xraay "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/xraay.sh"
+wget -O trafficxray "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/trafficxray.sh"
 chmod +x port-xray
 chmod +x port-trojan
 chmod +x certv2ray
