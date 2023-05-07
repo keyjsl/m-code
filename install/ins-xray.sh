@@ -874,7 +874,7 @@ systemctl enable xray@trnone
 systemctl start xray@trnone
 systemctl restart xray@trnone
 
-# enable xray vless xtls direct & splice
+# enable xray vless xtls
 systemctl daemon-reload
 systemctl enable xray@xtls
 systemctl start xray@xtls
