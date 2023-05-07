@@ -180,7 +180,7 @@ cat> /usr/local/etc/xray/none.json << END
        },
     "inbounds": [
            {
-            "port": 89,
+            "port": 80,
             "protocol": "vmess",
             "settings": {
                 "clients": [
@@ -828,7 +828,7 @@ WantedBy=multi-user.target
 END
 
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 89 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1310 -j ACCEPT
@@ -836,7 +836,7 @@ iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1311 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1312 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1314 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 89 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8080 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 1310 -j ACCEPT
