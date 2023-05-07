@@ -15,9 +15,3 @@ exp2=$(( (d1 - d2) / 86400 ))
 printf "$user\n$exp2\n" | add-ss
 done
 rm -f /etc/shadowsocks-libev/ss.conf
-data=( `cat /etc/wireguard/wg0.conf | grep '^### Client' | cut -d ' ' -f 3`);
-now=`date +"%Y-%m-%d"`
-for user in "${data[@]}"
-do
-chmod 777 /home/vps/public_html/$user.conf
-done
