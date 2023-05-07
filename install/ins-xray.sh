@@ -180,7 +180,7 @@ cat> /usr/local/etc/xray/none.json << END
        },
     "inbounds": [
            {
-            "port": 80,
+            "port": 89,
             "protocol": "vmess",
             "settings": {
                 "clients": [
