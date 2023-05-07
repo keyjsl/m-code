@@ -4,7 +4,7 @@ GitUser="keyjsl"
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 clear
-_APISERVER=127.0.0.1:10085
+_APISERVER=127.0.0.1:1311
 _XRAY=/usr/local/bin/xray
 
 apidata () {
