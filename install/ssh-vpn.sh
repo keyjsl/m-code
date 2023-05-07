@@ -196,7 +196,6 @@ wget -O restart "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/syste
 wget -O speedtest "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/speedtest_cli.py"
 wget -O info "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/info.sh"
 wget -O ram "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/ram.sh"
-wget -O autokill "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/autokill.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/clear-log.sh"
 wget -O change-port "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change.sh"
 wget -O wbmn "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/webmin.sh"
