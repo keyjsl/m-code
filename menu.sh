@@ -77,7 +77,7 @@ ascii=$(cat /usr/bin/test)
 clear
 echo -e "\e[$banner_colour"
 figlet -f $ascii "$banner"
-echo -e "\e[$text Premium Script"
+echo -e "\e[$text WSS Script"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   " \e[$back_text                    \e[30m[\e[$box SERVER INFORMATION\e[30m ]\e[1m                  \e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
@@ -97,20 +97,19 @@ echo -e "  \e[$text Provided By          : $creditt"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   " \e[$back_text                        \e[30m[\e[$box MAIN MENU\e[30m ]\e[1m                       \e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
-echo -e   "  \e[$number (•1)\e[m \e[$below XRAY VMESS & VLESS\e[m          \e[$number (•7)\e[m \e[$below MENU THEMES\e[m"
-echo -e   "  \e[$number (•2)\e[m \e[$below TROJAN XRAY & GO\e[m            \e[$number (•8)\e[m \e[$below CLEAR LOG VPS\e[m"
-echo -e   "  \e[$number (•3)\e[m \e[$below PANEL WIREGUARDS\e[m            \e[$number (•9)\e[m \e[$below CHANGE PORT\e[m"
-echo -e   "  \e[$number (•4)\e[m \e[$below PANEL SHADOWSOCKS\e[m           \e[$number (10)\e[m \e[$below CHECK RUNNING\e[m"
-echo -e   "  \e[$number (•5)\e[m \e[$below OPENSSH & OPENVPN\e[m           \e[$number (11)\e[m \e[$below TRAFFIC XRAY\e[m"
-echo -e   "  \e[$number (•6)\e[m \e[$below SYSTEM MENU\e[m                 \e[$number (12)\e[m \e[$below INFO ALL PORT\e[m"
+echo -e   "  \e[$number (•1)\e[m \e[$below XRAY VMESS & VLESS\e[m          \e[$number (•6)\e[m \e[$below CLEAR LOG VPS\e[m"
+echo -e   "  \e[$number (•2)\e[m \e[$below TROJAN XRAY & GO\e[m            \e[$number (•7)\e[m \e[$below CHANGE PORT\e[m"
+echo -e   "  \e[$number (•3)\e[m \e[$below PANEL SHADOWSOCKS\e[m           \e[$number (•8)\e[m \e[$below CHECK RUNNING\e[m"
+echo -e   "  \e[$number (•4)\e[m \e[$below SYSTEM MENU\e[m                 \e[$number (•9)\e[m \e[$below TRAFFIC XRAY\e[m"
+echo -e   "  \e[$number (•5)\e[m \e[$below MENU THEMES\e[m                 \e[$number (10)\e[m \e[$below INFO ALL PORT\e[m"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
-echo -e   "  \e[$below Premium VPS by $creditt"
+echo -e   "  \e[$below WSS VPS by $creditt"
 echo -e   "  \e[$below Thank you for using this script"
 echo -e   " \e[$line════════════════════════════════════════════════════════════\e[m"
 echo -e   ""
 echo -e   "  \e[$below [Ctrl + C] For exit from main menu\e[m"
 echo -e   "\e[$below "
-read -p   "   Select From Options [1-12 or x] :  " menu
+read -p   "   Select From Options [1-10 or x] :  " menu
 echo -e   ""
 case $menu in
 1)
@@ -120,33 +119,27 @@ xraay
 trojaan
 ;;
 3)
-wgr
-;;
-4)
 ssssr
 ;;
-5)
-ssh
-;;
-6)
+4)
 system
 ;;
-7)
+5)
 themes
 ;;
-8)
+6)
 clear-log
 ;;
-9)
+7)
 change-port
 ;;
-10)
+8)
 check-sc
 ;;
-11)
+9)
 trafficxray
 ;;
-12)
+10)
 info
 ;;
 x)
