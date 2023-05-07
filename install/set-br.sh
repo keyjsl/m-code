@@ -3,7 +3,7 @@
 GitUser="keyjsl"
 apt install rclone
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vision/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/rclone.conf"
 git clone https://github.com/magnific0/wondershaper.git &> /dev/null
 cd wondershaper
 make install
@@ -28,12 +28,12 @@ logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
 cd /usr/bin
-wget -O autobackup "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/autobackup.sh"
-wget -O backup "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/backup.sh"
-wget -O bckp "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/bckp.sh"
-wget -O restore "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/restore.sh"
-wget -O strt "https://raw.githubusercontent.com/${GitUser}/v-code/vision/system/strt.sh"
-wget -O limit-speed "https://raw.githubusercontent.com/${GitUser}/v-code/vision/limit-speed.sh"
+wget -O autobackup "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/autobackup.sh"
+wget -O backup "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/backup.sh"
+wget -O bckp "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/bckp.sh"
+wget -O restore "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/restore.sh"
+wget -O strt "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/strt.sh"
+wget -O limit-speed "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/limit-speed.sh"
 chmod +x autobackup
 chmod +x backup
 chmod +x bckp
