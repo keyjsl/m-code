@@ -94,11 +94,11 @@ iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2443:3543 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 ip6tables-save > /etc/ip6tables.up.rules
 cd /usr/bin
-wget -O add-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vision/add-user/add-ss.sh"
-wget -O del-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vision/delete-user/del-ss.sh"
-wget -O cek-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vision/cek-user/cek-ss.sh"
-wget -O renew-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vision/renew-user/renew-ss.sh"
-wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/v-code/vision/menu/ssssr.sh"
+wget -O add-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/add-user/add-ss.sh"
+wget -O del-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/delete-user/del-ss.sh"
+wget -O cek-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cek-user/cek-ss.sh"
+wget -O renew-ss "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/renew-user/renew-ss.sh"
+wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/ssssr.sh"
 chmod +x add-ss
 chmod +x del-ss
 chmod +x cek-ss
