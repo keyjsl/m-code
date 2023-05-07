@@ -24,45 +24,21 @@ echo -e "   \e[$line════════════════════
 echo -e "   \e[$back_text         \e[30m═[\e[$box CHANGE PORT MENU\e[30m ]═         \e[m"
 echo -e "   \e[$line════════════════════════════════════════\e[m"
 echo -e "\e[$number   >>\e[$number Please select an option below :\e[0m"
-echo -e "   \e[$number (•1)\e[m \e[$below Change Port Stunnel\e[m"
-echo -e "   \e[$number (•2)\e[m \e[$below Change Port OpenVPN\e[m"
-echo -e "   \e[$number (•3)\e[m \e[$below Change Port OHP SSH\e[m"
-echo -e "   \e[$number (•4)\e[m \e[$below Change Port Websocket SSH\e[m"
-echo -e "   \e[$number (•5)\e[m \e[$below Change Port Wireguard\e[m"
-echo -e "   \e[$number (•6)\e[m \e[$below Change Port Xray Core\e[m"
-echo -e "   \e[$number (•7)\e[m \e[$below Change Port Trojan Go\e[m"
-echo -e "   \e[$number (•8)\e[m \e[$below Change Port Squid Proxy\e[m"
+echo -e "   \e[$number (•1)\e[m \e[$below Change Port Xray Core\e[m"
+echo -e "   \e[$number (•2)\e[m \e[$below Change Port Trojan Go\e[m"
 echo -e ""
 echo -e "   \e[$line═══════════════════════════════════════\e[m"
 echo -e "   \e[$back_text \e[$box x)  MENU                             \e[m"
 echo -e "   \e[$line═══════════════════════════════════════\e[m"
 echo -e ""
-read -p "     Select From Options [1-8 or x] :  " port
+read -p "     Select From Options [1-2 or x] :  " port
 echo -e ""
 case $port in
 1)
-port-ssl
-;;
-2)
-port-ovpn
-;;
-3)
-port-ohp
-;;
-4)
-port-websocket
-;;
-5)
-port-wg
-;;
-6)
 port-xray
 ;;
-7)
+2)
 port-trojan
-;;
-8)
-port-squid
 ;;
 x)
 clear
