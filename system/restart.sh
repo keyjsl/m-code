@@ -13,6 +13,7 @@ echo -e "  \e[0;32m[•2]\e[0m Restart Nginx"
 echo -e "  \e[0;32m[•3]\e[0m Restart Vmess & Vless"
 echo -e "  \e[0;32m[•4]\e[0m Restart Trojan"
 echo -e "  \e[0;32m[•5]\e[0m Restart ShadowsocksR"
+echo -e "  \e[0;32m[•6]\e[0m Restart Squid"
 echo -e "======================================"
 echo -e "   \e[0;32m[x]\e[0m     \e[1;31mMain Menu\e[0m"
 echo -e ""
@@ -93,6 +94,17 @@ case $Restart in
                 echo -e "======================================"
                 echo -e ""
                 echo -e "      \e[0;32mShadowsockR Service Restart\e[0m     "
+                echo -e ""
+                echo -e "======================================"
+                exit
+                ;;
+		6)
+                clear
+                /etc/init.d/squid restart
+                echo -e ""
+                echo -e "======================================"
+                echo -e ""
+                echo -e "        \e[0;32mSquid3 Service Restarted\e[0m      "
                 echo -e ""
                 echo -e "======================================"
                 exit
