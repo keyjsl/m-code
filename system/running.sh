@@ -169,6 +169,46 @@ echo -e ""
 echo -e "              \e[0;32m[\e[1;36mSYSTEM STATUS INFORMATION\e[0;32m]\e[0m"
 echo -e "             \e[0;34m=============================\e[0m"
 echo -e ""
+status="$(systemctl show dropbear.service --no-page)"
+status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
+if [ "${status_text}" == "active" ]
+then
+echo -e " DropBear                : "$green"running"$NC" ✓"
+else
+echo -e " DropBear                : "$red"not running (Error)"$NC" "
+fi
+status="$(systemctl show cdn-dropbear.service --no-page)"
+status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
+if [ "${status_text}" == "active" ]
+then
+echo -e " Websocket SSH(HTTP)     : "$green"running"$NC" ✓"
+else
+echo -e " Websocket SSH(HTTP)     : "$red"not running (Error)"$NC" "
+fi
+status="$(systemctl show cdn-ssl.service --no-page)"
+status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
+if [ "${status_text}" == "active" ]
+then
+echo -e " Websocket SSL(HTTPS)    : "$green"running"$NC" ✓"
+else
+echo -e " Websocket SSL(HTTPS)    : "$red"not running (Error)"$NC" "
+fi
+status="$(systemctl show ohps.service --no-page)"
+status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
+if [ "${status_text}" == "active" ]
+then
+echo -e " OHP-SSH                 : "$green"running"$NC" ✓"
+else
+echo -e " OHP-SSH                 : "$red"not running (Error)"$NC" "
+fi
+status="$(systemctl show ohpd.service --no-page)"
+status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
+if [ "${status_text}" == "active" ]
+then
+echo -e " OHP-Dropbear            : "$green"running"$NC" ✓"
+else
+echo -e " OHP-Dropbear            : "$red"not running (Error)"$NC" "
+fi
 echo -e "\e[1;33mSTATUS XRAY:\e[0m"
 echo -e "\e[0;34m-------------\e[0m"
 status="$(systemctl show xray.service --no-page)"
