@@ -124,7 +124,7 @@ if [[ ${OS} == "centos" ]]; then
 }
 Start_SSR(){
 	check_pid
-	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/v-code/vision/ssrmu"
+	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/ssrmu"
 	/etc/init.d/ssrmu start
 }
 Install_SSR(){
@@ -140,9 +140,9 @@ Save_iptables
 Start_SSR
 }
 Install_SSR
-wget -O /usr/bin/ssr https://raw.githubusercontent.com/${GitUser}/v-code/vision/ssrmu.sh && chmod +x /usr/bin/ssr
-wget -O /usr/bin/add-ssr https://raw.githubusercontent.com/${GitUser}/v-code/vision/add-user/add-ssr.sh && chmod +x /usr/bin/add-ssr
-wget -O /usr/bin/del-ssr https://raw.githubusercontent.com/${GitUser}/v-code/vision/delete-user/del-ssr.sh && chmod +x /usr/bin/del-ssr
-wget -O /usr/bin/renew-ssr https://raw.githubusercontent.com/${GitUser}/v-code/vision/renew-user/renew-ssr.sh && chmod +x /usr/bin/renew-ssr
+wget -O /usr/bin/ssr https://raw.githubusercontent.com/${GitUser}/v-code/vswss/ssrmu.sh && chmod +x /usr/bin/ssr
+wget -O /usr/bin/add-ssr https://raw.githubusercontent.com/${GitUser}/v-code/vswss/add-user/add-ssr.sh && chmod +x /usr/bin/add-ssr
+wget -O /usr/bin/del-ssr https://raw.githubusercontent.com/${GitUser}/v-code/vswss/delete-user/del-ssr.sh && chmod +x /usr/bin/del-ssr
+wget -O /usr/bin/renew-ssr https://raw.githubusercontent.com/${GitUser}/v-code/vswss/renew-user/renew-ssr.sh && chmod +x /usr/bin/renew-ssr
 touch /usr/local/shadowsocksr/akun.conf
 rm -f /root/ssr.sh
