@@ -258,7 +258,7 @@ else
 echo -e " Shadowsocks             : "$red"not running (Error)"$NC" "
 fi
 echo -e ""
-echo -e "\e[1;33mSTATUS NGIX & SQUID:\e[0m"
+echo -e "\e[1;33mSTATUS NGIX\:\e[0m"
 echo -e "\e[0;34m--------------------\e[0m"
 status="$(systemctl show nginx.service --no-page)"
 status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
@@ -267,14 +267,6 @@ then
 echo -e " Nginx                   : "$green"running"$NC" ✓"
 else
 echo -e " Nginx                   : "$red"not running (Error)"$NC" "
-fi
-status="$(systemctl show squid.service --no-page)"
-status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
-if [ "${status_text}" == "active" ]
-then
-echo -e " Squid                   : "$green"running"$NC" ✓"
-else
-echo -e " Squid                   : "$red"not running (Error)"$NC" "
 fi
 echo -e "\e[0;34m-----------------------------------------------------------\e[0m"
 echo -e ""
