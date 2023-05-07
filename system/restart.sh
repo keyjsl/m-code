@@ -26,20 +26,20 @@ case $Restart in
                 clear
                 /etc/init.d/cron restart
                 /etc/init.d/nginx restart
-				systemctl restart xray
-				systemctl restart xray@none
-				systemctl restart xray@vless
-				systemctl restart xray@vnone
+		systemctl restart xray
+		systemctl restart xray@none
+		systemctl restart xray@vless
+		systemctl restart xray@vnone
                 systemctl restart xray@trojanws
                 systemctl restart xray@trnone
-				systemctl restart xray@vmessgun
-				systemctl restart xray@vlessgun
+		systemctl restart xray@vmessgun
+		systemctl restart xray@vlessgun
                 systemctl restart xray@trojangun
-				systemctl restart xray@xtls
-				systemctl restart xray@trojan
-				systemctl restart trojan-go
-				/etc/init.d/ssrmu restart
-               echo -e ""
+		systemctl restart xray@xtls
+		systemctl restart xray@trojan
+		systemctl restart trojan-go
+		/etc/init.d/ssrmu restart
+                echo -e ""
                 echo -e "======================================"
                 echo -e ""
                 echo -e "          \e[0;32mALL Service Restarted\e[0m         "
@@ -60,13 +60,13 @@ case $Restart in
                 ;;
                 3)
                 clear
-				systemctl restart xray
-				systemctl restart xray@none
-				systemctl restart xray@vless
-				systemctl restart xray@vnone
-				systemctl restart xray@trojanws
+		systemctl restart xray
+		systemctl restart xray@none
+		systemctl restart xray@vless
+		systemctl restart xray@vnone
+		systemctl restart xray@trojanws
                 systemctl restart xray@trnone
-				systemctl restart xray@xtls
+		systemctl restart xray@xtls
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
