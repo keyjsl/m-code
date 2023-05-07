@@ -93,23 +93,6 @@ mkdir -p /home/vps/public_html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/vps.conf"
 /etc/init.d/nginx restart
 
-# install badvpn
-cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/badvpn-udpgw64"
-chmod +x /usr/bin/badvpn-udpgw
-sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
-sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
-sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
-
 apt-get -y update
 # setting port ssh
 cd
@@ -122,22 +105,6 @@ sed -i '/Port 22/a Port 58080' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
 sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
-
-# install dropbear
-apt -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 69"/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-echo "/usr/sbin/nologin" >> /etc/shells
-/etc/init.d/dropbear restart
-
-# install squid for debian 9,10 & ubuntu 20.04
-apt -y install squid3
-# install squid for debian 11
-apt -y install squid
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf
 
 # setting vnstat
 apt -y install vnstat
@@ -224,37 +191,20 @@ cd /usr/bin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu.sh"
-#wget -O add-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/add-user/add-ssh.sh"
-#wget -O trial "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/add-user/trial.sh"
-wget -O del-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/delete-user/del-ssh.sh"
-#wget -O member "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/member.sh"
 wget -O delete "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/delete-user/delete.sh"
-#wget -O cek-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cek-user/cek-ssh.sh"
 wget -O restart "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/restart.sh"
 wget -O speedtest "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/speedtest_cli.py"
 wget -O info "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/info.sh"
 wget -O ram "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/ram.sh"
-#wget -O renew-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/renew-user/renew-ssh.sh"
 wget -O autokill "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/autokill.sh"
-#wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cek-user/ceklim.sh"
-#wget -O tendang "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/tendang.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/clear-log.sh"
 wget -O change-port "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change.sh"
-#wget -O port-ovpn "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-ovpn.sh"
-wget -O port-ssl "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-ssl.sh"
-#wget -O port-wg "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-wg.sh"
-wget -O port-squid "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-squid.sh"
-wget -O port-websocket "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-websocket.sh"
 wget -O wbmn "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/webmin.sh"
 wget -O update "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/update.sh"
 wget -O run-update "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/run-update.sh"
 wget -O message-ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/message-ssh.sh"
 wget -O xp "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/xp.sh"
 wget -O kernel-updt "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/kernel.sh"
-#wget -O user-list "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/more-option/user-list.sh"
-#wget -O user-lock "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/more-option/user-lock.sh"
-#wget -O user-unlock "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/more-option/user-unlock.sh"
-#wget -O user-password "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/more-option/user-password.sh"
 wget -O antitorrent "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/more-option/antitorrent.sh"
 wget -O cfa "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cloud/cfa.sh"
 wget -O cfd "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/cloud/cfd.sh"
@@ -264,46 +214,27 @@ wget -O check-sc "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/syst
 wget -O ssh "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/ssh.sh"
 wget -O autoreboot "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/autoreboot.sh"
 wget -O bbr "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/bbr.sh"
-wget -O port-ohp "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-ohp.sh"
 wget -O port-xray "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change-port/port-xray.sh"
 wget -O panel-domain "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/panel-domain.sh"
 wget -O system "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/system.sh"
 wget -O themes "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/menu/themes.sh"
 chmod +x add-host
 chmod +x menu
-#chmod +x add-ssh
-#chmod +x trial
-#chmod +x del-ssh
-#chmod +x member
 chmod +x delete
-#chmod +x cek-ssh
 chmod +x restart
 chmod +x speedtest
 chmod +x info
 chmod +x about
-#chmod +x autokill
-#chmod +x tendang
-#chmod +x ceklim
 chmod +x ram
-#chmod +x renew-ssh
 chmod +x clear-log
 chmod +x change-port
 chmod +x restore
-#chmod +x port-ovpn
-chmod +x port-ssl
-#chmod +x port-wg
-chmod +x port-squid
-chmod +x port-websocket
 chmod +x wbmn
 chmod +x update
 chmod +x run-update
 chmod +x message-ssh
 chmod +x xp
 chmod +x kernel-updt
-#chmod +x user-list
-#chmod +x user-lock
-#chmod +x user-unlock
-#chmod +x user-password
 chmod +x antitorrent
 chmod +x cfa
 chmod +x cfd
@@ -313,7 +244,6 @@ chmod +x check-sc
 chmod +x ssh
 chmod +x autoreboot
 chmod +x bbr
-chmod +x port-ohp
 chmod +x port-xray
 chmod +x panel-domain
 chmod +x system
@@ -334,23 +264,10 @@ apt autoremove -y
 cd
 chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/nginx restart
-/etc/init.d/openvpn restart
 /etc/init.d/cron restart
 /etc/init.d/ssh restart
-/etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
 /etc/init.d/vnstat restart
-/etc/init.d/stunnel4 restart
-/etc/init.d/squid restart
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 history -c
 echo "unset HISTFILE" >> /etc/profile
 
