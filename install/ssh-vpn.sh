@@ -106,6 +106,13 @@ sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
 sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 
+# install squid for debian 9,10 & ubuntu 20.04
+apt -y install squid3
+# install squid for debian 11
+apt -y install squid
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/v-code/main/squid3.conf"
+sed -i $MYIP2 /etc/squid/squid.conf
+
 # setting vnstat
 apt -y install vnstat
 /etc/init.d/vnstat restart
@@ -198,6 +205,7 @@ wget -O info "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/i
 wget -O ram "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/system/ram.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/clear-log.sh"
 wget -O change-port "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/change.sh"
+wget -O port-squid "https://raw.githubusercontent.com/${GitUser}/v-code/main/change-port/port-squid.sh"
 wget -O wbmn "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/webmin.sh"
 wget -O update "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/update.sh"
 wget -O run-update "https://raw.githubusercontent.com/${GitUser}/v-code/vswss/update/run-update.sh"
@@ -228,6 +236,7 @@ chmod +x ram
 chmod +x clear-log
 chmod +x change-port
 chmod +x restore
+chmod +x port-squid
 chmod +x wbmn
 chmod +x update
 chmod +x run-update
@@ -267,12 +276,11 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/ssh restart
 /etc/init.d/fail2ban restart
 /etc/init.d/vnstat restart
+/etc/init.d/squid restart
 history -c
 echo "unset HISTFILE" >> /etc/profile
 
 cd
-rm -f /root/key.pem
-rm -f /root/cert.pem
 rm -f /root/ssh-vpn.sh
 
 # finishing
